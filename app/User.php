@@ -67,4 +67,18 @@ class User extends Authenticatable
             return $user;
         });
     }
+
+    /**
+     * Adds the condition for searching the salary if custom/modify for display.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string search term
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function laratablesSearchSalary($query, $searchValue)
+    {
+        if ($searchSalary = filter_var($searchValue, FILTER_SANITIZE_NUMBER_INT)) {
+            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
+        }
+    }
 }
