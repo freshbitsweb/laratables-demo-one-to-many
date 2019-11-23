@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'OneToManyController@index');
+Route::get('oneToMany', 'OneToManyController@oneToManyData')->name('oneToMany');
