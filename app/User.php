@@ -30,4 +30,18 @@ class User extends Authenticatable
     {
         return $user->comments->implode('content', ',');
     }
+
+     /**
+     * Adds the condition for searching the User comment.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string search term
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function laratablesSearchUserComments($query, $searchValue)
+    {
+        return $query->orWhereHas('comments', function ($query) use($searchValue) {
+            $query->where('content', 'like', "%". $searchValue ."%");
+        });
+    }
 }
