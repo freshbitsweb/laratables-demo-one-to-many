@@ -10,6 +10,7 @@
                     <th>Last Name</th>
                     <th>Start Date</th>
                     <th>Salary</th>
+                    <th>User Comments</th>
                 </tr>
             </thead>
             <tbody></tbody>
