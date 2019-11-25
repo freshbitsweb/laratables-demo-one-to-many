@@ -31,18 +31,32 @@ class User extends Authenticatable
         return $user->comments->implode('content', ',');
     }
 
-     /**
+    /**
      * Adds the condition for searching the User comment.
      *
      * @param \Illuminate\Database\Eloquent\Builder
      * @param string search term
      * @return \Illuminate\Database\Eloquent\Builder
-     */
+    */
     public static function laratablesSearchUserComments($query, $searchValue)
     {
-        return $query->orWhereHas('comments', function ($query) use($searchValue) {
+        return $query->orWhereHas('comments', function ($query) use ($searchValue) {
             $query->where('content', 'like', "%". $searchValue ."%");
         });
+    }
+
+    /**
+     * Adds the condition for searching the salary if custom/modify for display.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string search term
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function laratablesSearchSalary($query, $searchValue)
+    {
+        if ($searchSalary = filter_var($searchValue, FILTER_SANITIZE_NUMBER_INT)) {
+            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
+        }
     }
 
     /**
@@ -69,16 +83,47 @@ class User extends Authenticatable
     }
 
     /**
-     * Adds the condition for searching the salary if custom/modify for display.
+     * Returns the first_name & last_name value in Name column for datatables.
+     *
+     * @param \App\User
+     * @return string
+    */
+    public static function laratablesCustomName($user)
+    {
+        return $user->first_name . ' ' . $user->last_name;
+    }
+
+    /**
+     * Additional merged columns to be loaded for datatables.
+     *
+     * @return array
+     */
+    public static function laratablesAdditionalColumns()
+    {
+        return ['first_name', 'last_name'];
+    }
+
+    /**
+     * first_name column should be used for sorting when Name column is selected in Datatables.
+     *
+     * @return string
+     */
+    public static function laratablesOrderName()
+    {
+        return 'first_name';
+    }
+
+    /**
+     * Searching the user(column merged) in the query.
      *
      * @param \Illuminate\Database\Eloquent\Builder
      * @param string search term
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
      */
-    public static function laratablesSearchSalary($query, $searchValue)
+    public static function laratablesSearchName($query, $searchValue)
     {
-        if ($searchSalary = filter_var($searchValue, FILTER_SANITIZE_NUMBER_INT)) {
-            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
-        }
+        return $query->orWhere('first_name', 'like', '%'. $searchValue. '%')
+            ->orWhere('last_name', 'like', '%'. $searchValue. '%')
+        ;
     }
 }

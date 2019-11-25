@@ -21,8 +21,7 @@
                 serverSide: true,
                 ajax: "{{ route('oneToMany') }}",
                 columns: [
-                    { name: 'first_name' },
-                    { name: 'last_name' },
+                    { name: 'Name' },
                     { name: 'start_date' },
                     { name: 'salary' },
                     { name: 'userComments',  orderable: false },
