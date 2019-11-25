@@ -45,6 +45,22 @@ class User extends Authenticatable
         });
     }
 
+
+    /**
+     * Display currency symbol with format in salary column value.
+     *
+     * @param \Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
+     */
+    public static function laratablesModifyCollection($users)
+    {
+        return $users->map(function ($user) {
+            $user->salary = "$". number_format($user->salary); // $ for currency
+            return $user;
+        });
+    }
+
+
     /**
      * Adds the condition for searching the salary if custom/modify for display.
      *
@@ -67,20 +83,6 @@ class User extends Authenticatable
     protected $dates = [
         'start_date',
     ];
-
-    /**
-     * Display currency symbol with format in salary column value.
-     *
-     * @param \Illuminate\Support\Collection
-     * @return \Illuminate\Support\Collection
-     */
-    public static function laratablesModifyCollection($users)
-    {
-        return $users->map(function ($user) {
-            $user->salary = "$". number_format($user->salary); // $ for currency
-            return $user;
-        });
-    }
 
     /**
      * Returns the first_name & last_name value in Name column for datatables.
