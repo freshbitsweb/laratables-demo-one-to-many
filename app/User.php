@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public static function laratablesSearchSalary($query, $searchValue)
     {
-        if ($searchSalary = filter_var($searchValue, FILTER_SANITIZE_NUMBER_INT)) {
+        if ($searchSalary = preg_replace('/[^A-Za-z0-9\-]/', '', $searchValue)) {
             return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
         }
     }
