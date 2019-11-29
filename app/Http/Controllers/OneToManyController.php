@@ -12,10 +12,10 @@ class OneToManyController extends Controller
      *
      *
      * @return Illuminate\Http\Response
-     **/
+    **/
     public function index()
     {
-        return view('oneToManyLaraTable');
+        return view('one_to_many');
     }
 
     /**
@@ -23,11 +23,9 @@ class OneToManyController extends Controller
      *
      *
      * @return Jason
-     **/
+    **/
     public function oneToManyData()
     {
         return Laratables::recordsOf(User::class);
     }
-
-
 }

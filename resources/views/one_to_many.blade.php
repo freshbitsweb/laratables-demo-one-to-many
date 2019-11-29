@@ -12,7 +12,6 @@
                     <th>User Comments</th>
                 </tr>
             </thead>
-            <tbody></tbody>
         </table>
     </div>
 

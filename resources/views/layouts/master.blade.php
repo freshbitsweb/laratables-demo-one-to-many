@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>One-To-Many Relationship LaraTable</title>
+    <title>One-To-Many Relationship Laratable</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
 </head>
@@ -19,7 +19,7 @@
         $(document).ready(function(){
             $("#one-to-many").DataTable({
                 serverSide: true,
-                ajax: "{{ route('oneToMany') }}",
+                ajax: "{{ route('one_to_many') }}",
                 columns: [
                     { name: 'Name' },
                     { name: 'start_date' },

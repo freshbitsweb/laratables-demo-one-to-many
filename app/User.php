@@ -10,11 +10,16 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+    */
     public $timestamps = false;
 
     /**
      * Get the comments for the User.
-     */
+    */
     public function comments()
     {
         return $this->hasMany('App\Comment');
@@ -25,7 +30,7 @@ class User extends Authenticatable
      *
      * @param \App\User
      * @return string
-     */
+    */
     public static function laratablesCustomUserComments($user)
     {
         return $user->comments->implode('content', ',');
@@ -43,21 +48,19 @@ class User extends Authenticatable
         return $query->orWhereHas('comments', function ($query) use ($searchValue) {
             $query->where('content', 'like', "%". $searchValue ."%");
         });
+        return $query;
     }
 
 
     /**
      * Display currency symbol with format in salary column value.
      *
-     * @param \Illuminate\Support\Collection
-     * @return \Illuminate\Support\Collection
-     */
-    public static function laratablesModifyCollection($users)
+     * @param \App\User
+     * @return string
+    */
+    public static function laratablesSalary($user)
     {
-        return $users->map(function ($user) {
-            $user->salary = "$". number_format($user->salary); // $ for currency
-            return $user;
-        });
+        return $user->salary = "$". number_format($user->salary);
     }
 
 
@@ -73,6 +76,7 @@ class User extends Authenticatable
         if ($searchSalary = preg_replace('/[^A-Za-z0-9\-]/', '', $searchValue)) {
             return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
         }
+        return $query;
     }
 
     /**
@@ -92,7 +96,7 @@ class User extends Authenticatable
     */
     public static function laratablesCustomName($user)
     {
-        return $user->first_name . ' ' . $user->last_name;
+        return $user->first_name. ' ' .$user->last_name;
     }
 
     /**
@@ -127,5 +131,6 @@ class User extends Authenticatable
         return $query->orWhere('first_name', 'like', '%'. $searchValue. '%')
             ->orWhere('last_name', 'like', '%'. $searchValue. '%')
         ;
+        return $query;
     }
 }
