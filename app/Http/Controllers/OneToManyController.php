@@ -19,7 +19,7 @@ class OneToManyController extends Controller
     }
 
     /**
-     * return data of the Many To Many Relationship datatables.
+     * return data of the One To Many Relationship datatables.
      *
      *
      * @return Jason

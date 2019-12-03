@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -48,7 +48,6 @@ class User extends Authenticatable
         return $query->orWhereHas('comments', function ($query) use ($searchValue) {
             $query->where('content', 'like', "%". $searchValue ."%");
         });
-        return $query;
     }
 
 
@@ -129,8 +128,6 @@ class User extends Authenticatable
     public static function laratablesSearchName($query, $searchValue)
     {
         return $query->orWhere('first_name', 'like', '%'. $searchValue. '%')
-            ->orWhere('last_name', 'like', '%'. $searchValue. '%')
-        ;
-        return $query;
+            ->orWhere('last_name', 'like', '%'. $searchValue. '%');
     }
 }

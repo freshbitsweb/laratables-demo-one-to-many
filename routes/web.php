@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'OneToManyController@index');
-Route::get('oneToMany', 'OneToManyController@oneToManyData')->name('one_to_many');
+Route::get('one-to-many', 'OneToManyController@oneToManyData')->name('one_to_many');

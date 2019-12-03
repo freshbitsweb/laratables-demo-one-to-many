@@ -24,7 +24,7 @@
                     { name: 'Name' },
                     { name: 'start_date' },
                     { name: 'salary' },
-                    { name: 'userComments',  orderable: false },
+                    { name: 'user_comments',  orderable: false },
                 ],
             });
         });
