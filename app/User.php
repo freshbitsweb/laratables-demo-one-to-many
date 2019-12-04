@@ -2,14 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
-
     /**
      * Indicates if the model should be timestamped.
      *
@@ -26,7 +22,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Display the relationship data in custom column(userComments).
+     * Display the relationship data in custom column(user_ comments).
      *
      * @param \App\User
      * @return string
@@ -52,7 +48,7 @@ class User extends Authenticatable
 
 
     /**
-     * Display currency symbol with format in salary column value.
+     * Display currency symbol with format in salary column.
      *
      * @param \App\User
      * @return string
