@@ -10,12 +10,13 @@ class User extends Model
      * Indicates if the model should be timestamped.
      *
      * @var bool
-    */
+     */
     public $timestamps = false;
 
     /**
      * Get the comments for the User.
-    */
+     *
+     */
     public function comments()
     {
         return $this->hasMany('App\Comment');
@@ -37,7 +38,7 @@ class User extends Model
      *
      * @param \App\User
      * @return string
-    */
+     */
     public static function laratablesCustomUserComments($user)
     {
         return $user->comments->implode('content', ',');
@@ -49,7 +50,7 @@ class User extends Model
      * @param \Illuminate\Database\Eloquent\Builder
      * @param string search term
      * @return \Illuminate\Database\Eloquent\Builder
-    */
+     */
     public static function laratablesSearchUserComments($query, $searchValue)
     {
         return $query->orWhereHas('comments', function ($query) use ($searchValue) {
@@ -63,10 +64,10 @@ class User extends Model
      *
      * @param \App\User
      * @return string
-    */
+     */
     public static function laratablesSalary($user)
     {
-        return $user->salary = "$". number_format($user->salary);
+        return $user->salary = "$".number_format($user->salary);
     }
 
 
@@ -80,8 +81,10 @@ class User extends Model
     public static function laratablesSearchSalary($query, $searchValue)
     {
         if ($searchSalary = preg_replace('/[^A-Za-z0-9\-]/', '', $searchValue)) {
-            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
+            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%')
+            ;
         }
+
         return $query;
     }
 
@@ -135,6 +138,7 @@ class User extends Model
     public static function laratablesSearchName($query, $searchValue)
     {
         return $query->orWhere('first_name', 'like', '%'. $searchValue. '%')
-            ->orWhere('last_name', 'like', '%'. $searchValue. '%');
+            ->orWhere('last_name', 'like', '%'. $searchValue. '%')
+        ;
     }
 }
