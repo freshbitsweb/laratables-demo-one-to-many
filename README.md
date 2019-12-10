@@ -2,7 +2,7 @@
 
 Online Demo - https://laratables.freshbits.in
 
-This repo contains the code for the Example of [One To Many Laratables](https://github.com/freshbitsweb/laratables-demo-one-to-many) package.
+This repo contains the code for the demo of [Laratables](https://github.com/freshbitsweb/laratables) package.
 
 # Installation
 
