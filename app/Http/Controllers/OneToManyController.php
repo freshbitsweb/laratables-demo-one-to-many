@@ -18,7 +18,7 @@ class OneToManyController extends Controller
     }
 
     /**
-     * return data of the One To Many Relationship datatables.
+     * Returns data of the One To Many Relationship datatables.
      *
      * @return Illuminate\Http\JsonResponse
      **/

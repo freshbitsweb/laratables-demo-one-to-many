@@ -10,7 +10,7 @@
 </head>
 <body>
 
-@yield('content')
+    @yield('content')
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>

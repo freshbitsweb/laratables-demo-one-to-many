@@ -15,7 +15,6 @@ class User extends Model
 
     /**
      * Get the comments for the User.
-     *
      */
     public function comments()
     {
@@ -58,7 +57,6 @@ class User extends Model
         });
     }
 
-
     /**
      * Display currency symbol with format in salary column.
      *
@@ -67,9 +65,8 @@ class User extends Model
      */
     public static function laratablesSalary($user)
     {
-        return $user->salary = "$".number_format($user->salary);
+        return "$".number_format($user->salary);
     }
-
 
     /**
      * Adds the condition for searching the salary if custom/modify for display.
@@ -81,8 +78,7 @@ class User extends Model
     public static function laratablesSearchSalary($query, $searchValue)
     {
         if ($searchSalary = preg_replace('/[^A-Za-z0-9\-]/', '', $searchValue)) {
-            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%')
-            ;
+            return $query->orWhere('salary', 'like', '%'. $searchSalary. '%');
         }
 
         return $query;
@@ -119,7 +115,7 @@ class User extends Model
     }
 
     /**
-     * first_name column should be used for sorting when Name column is selected in Datatables.
+     * First_name column should be used for sorting when Name column is selected in Datatables.
      *
      * @return string
      */
